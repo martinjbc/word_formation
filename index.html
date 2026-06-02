@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wordify: Word Formation Academy (Británico / Cambridge Prep)</title>
+  <link rel="stylesheet" href="styles.css?v=20260601">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header Navigation -->
+    <header>
+      <div class="logo-container">
+        <div class="logo-icon">W</div>
+        <div class="logo-text">
+          <h1>Wordify</h1>
+          <p>Word Formation Academy</p>
+        </div>
+      </div>
+      <nav class="nav-tabs">
+        <button class="tab-btn active" data-target="roadmap">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+          Ruta
+        </button>
+        <button class="tab-btn" data-target="theory">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+          Teoría
+        </button>
+        <button class="tab-btn" data-target="matrix">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          Buscador
+        </button>
+        <button class="tab-btn" data-target="practice">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+          Práctica
+        </button>
+      </nav>
+    </header>
+
+    <!-- Main Content Area -->
+    <main>
+      <!-- SECTION 1: ROADMAP (Ruta de Aprendizaje) -->
+      <section id="roadmap" class="view-section active">
+        <div class="hero">
+          <h2>Ruta de Aprendizaje</h2>
+          <p>Domina Word Formation desde los conceptos más básicos de gramática hasta las palabras trampa más avanzadas de los exámenes de ciclo.</p>
+        </div>
+        <div class="roadmap-container" id="roadmap-levels-container">
+          <!-- Dynamically populated from data.js -->
+        </div>
+      </section>
+
+      <!-- SECTION 2: THEORY (Biblioteca de Teoría) -->
+      <section id="theory" class="view-section">
+        <div class="theory-layout">
+          <!-- Sidebar select level -->
+          <aside class="theory-sidebar">
+            <h3 class="theory-menu-title">Niveles de Teoría</h3>
+            <ul class="theory-nav-list" id="theory-menu-list">
+              <!-- Dynamically populated from data.js -->
+            </ul>
+          </aside>
+          <!-- Theory Content Panel -->
+          <article class="theory-content" id="theory-content-panel">
+            <!-- Dynamically populated based on active menu -->
+          </article>
+        </div>
+      </section>
+
+      <!-- SECTION 3: WORD MATRIX (Buscador de Palabras) -->
+      <section id="matrix" class="view-section">
+        <div class="hero">
+          <h2>Buscador de Palabras</h2>
+          <p>Busca palabras raíz para ver instantáneamente sus variantes en Verbo, Sustantivo, Adjetivo, Adverbio y Formas Negativas.</p>
+        </div>
+        <div class="matrix-controls">
+          <div class="search-wrapper">
+            <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <input type="text" id="matrix-search" class="search-input" placeholder="Escribe para buscar... (ej: 'agree', 'beauty', 'able')">
+          </div>
+        </div>
+        <div class="matrix-table-container">
+          <table class="matrix-table">
+            <thead>
+              <tr>
+                <th>Raíz (Root)</th>
+                <th>Verbo (Verb)</th>
+                <th>Sustantivo (Noun)</th>
+                <th>Adjetivo (Adjective)</th>
+                <th>Adverbio (Adverb)</th>
+                <th>Negativo (Negatives)</th>
+              </tr>
+            </thead>
+            <tbody id="matrix-table-body">
+              <!-- Dynamically populated from data.js -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- SECTION 4: PRACTICE (Zona de Práctica / Simulador) -->
+      <section id="practice" class="view-section">
+        <div class="practice-container">
+          <div class="practice-header">
+            <div class="level-selector-wrapper">
+              <label for="practice-level-select" style="font-weight: 600; font-size: 14px; color: var(--text-secondary);">Nivel:</label>
+              <select id="practice-level-select" class="select-dropdown">
+                <option value="all">Todos los niveles mezclados</option>
+                <option value="1">Nivel 1: Conceptos Clave</option>
+                <option value="2">Nivel 2: Sufijos (Noun/Adj)</option>
+                <option value="3">Nivel 3: Verbos y Adverbios</option>
+                <option value="4">Nivel 4: Formas Negativas</option>
+                <option value="5">Nivel 5: Irregulares y Trampas</option>
+              </select>
+            </div>
+            <div style="display: flex; gap: 8px; align-items: center;">
+              <span class="score-badge" id="score-display">Puntaje: 0 / 0</span>
+              <button class="btn" id="reset-practice-btn" style="padding: 6px 12px;">Reiniciar</button>
+            </div>
+          </div>
+
+          <!-- Progress Bar -->
+          <div class="progress-container">
+            <div class="progress-bar-bg">
+              <div class="progress-bar-fill" id="practice-progress-fill"></div>
+            </div>
+            <span class="progress-text" id="practice-progress-text">0 / 0</span>
+          </div>
+
+          <!-- Question Display area -->
+          <div id="practice-content-area">
+            <!-- Dynamically populated or Finished screen -->
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <p>&copy; 2026 Wordify - Diseñado para estudiantes del Británico (Intermedio-Avanzado). ¡A por ese 100% en el Final Exam!</p>
+    </footer>
+  </div>
+
+  <!-- Scripts -->
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
