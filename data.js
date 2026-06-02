@@ -2,6 +2,54 @@ const WORD_FORMATION_DATA = {
   studyPlan: {
     title: "Ruta de repaso para dejar de adivinar",
     description: "Usa este ciclo cada vez que practiques. Primero decides la categoria gramatical, luego el significado, y al final recien eliges el prefijo/sufijo correcto.",
+    theory: [
+      {
+        title: "La regla principal",
+        content: "En Word Formation no empieces preguntando 'que sufijo uso'. Empieza preguntando 'que funcion cumple el espacio en la frase'. La posicion del hueco te dice la categoria: noun, verb, adjective o adverb."
+      },
+      {
+        title: "Como parafrasear",
+        content: "Despues de identificar la categoria, explica la frase en espanol simple. Busca senales de significado: contraste (although, however), problema (unfortunately, no, without), resultado (because, so), intensidad (very, extremely, completely)."
+      },
+      {
+        title: "Orden correcto de respuesta",
+        content: "1) Categoria gramatical. 2) Sentido positivo o negativo. 3) Sufijo/prefijo. 4) Ortografia. Si saltas el paso 1 o 2, normalmente eliges una palabra que existe, pero no encaja en la frase."
+      }
+    ],
+    guidedPractice: [
+      {
+        sentence: "The museum is free, but visitors are encouraged to make a small ____.",
+        base: "DONATE",
+        category: "noun",
+        clue: "Despues de 'a small' falta un sustantivo.",
+        paraphrase: "Los visitantes pueden hacer una pequena donacion.",
+        answer: "donation"
+      },
+      {
+        sentence: "The instructions were so complex that I had to ask the teacher to ____ them.",
+        base: "CLEAR",
+        category: "verb",
+        clue: "Despues de 'to' falta un verbo en forma base.",
+        paraphrase: "Pedi al profesor que las hiciera claras.",
+        answer: "clarify"
+      },
+      {
+        sentence: "The service was terrible and the staff were very ____.",
+        base: "POLITE",
+        category: "adjective",
+        clue: "Despues de 'were very' falta un adjetivo.",
+        paraphrase: "Como el servicio fue terrible, el personal no fue amable.",
+        answer: "impolite"
+      },
+      {
+        sentence: "The exam was ____ easy; everyone passed with top marks.",
+        base: "SURPRISE",
+        category: "adverb",
+        clue: "La palabra modifica al adjetivo 'easy'.",
+        paraphrase: "El examen fue sorprendentemente facil.",
+        answer: "surprisingly"
+      }
+    ],
     steps: [
       {
         label: "1. Detecta el hueco",

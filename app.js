@@ -121,6 +121,36 @@ function renderStudyPlan(container, plan) {
         </div>
       `).join('')}
     </div>
+    <div class="study-theory">
+      <h4>Teoria para usar la ruta</h4>
+      <div class="study-theory-grid">
+        ${plan.theory.map(item => `
+          <div class="study-theory-card">
+            <strong>${item.title}</strong>
+            <p>${item.content}</p>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+    <div class="guided-practice">
+      <h4>Practica guiada: piensa antes de escribir</h4>
+      <div class="guided-practice-grid">
+        ${plan.guidedPractice.map(item => `
+          <div class="guided-practice-card">
+            <p class="guided-sentence">${item.sentence}</p>
+            <div class="guided-meta">
+              <span>Base: ${item.base}</span>
+              <span>Categoria: ${item.category}</span>
+            </div>
+            <ol>
+              <li>${item.clue}</li>
+              <li>${item.paraphrase}</li>
+              <li>Respuesta: <strong>${item.answer}</strong></li>
+            </ol>
+          </div>
+        `).join('')}
+      </div>
+    </div>
     <div class="weekly-review">
       <h4>Plan de repaso de 7 dias</h4>
       <ul>
