@@ -151,6 +151,31 @@ function renderStudyPlan(container, plan) {
         `).join('')}
       </div>
     </div>
+    <div class="route-practice">
+      <div class="route-practice-header">
+        <h4>Ejercicios para resolver con la ruta</h4>
+        <p>Primero marca la categoria que falta, luego escribe la palabra correcta. Al comprobar veras la parafrasis y el razonamiento.</p>
+      </div>
+      <div class="route-practice-grid">
+        ${plan.routePractice.map((item, index) => `
+          <div class="route-practice-card" data-route-index="${index}">
+            <span class="route-practice-number">Ejercicio ${index + 1}</span>
+            <p class="route-sentence">${item.sentence}</p>
+            <span class="word-hint route-word-hint">Base Word: ${item.base}</span>
+            <div class="route-category-options" role="group" aria-label="Categoria gramatical">
+              ${['noun', 'verb', 'adjective', 'adverb'].map(category => `
+                <button type="button" class="category-chip" data-category="${category}">${category}</button>
+              `).join('')}
+            </div>
+            <div class="route-answer-row">
+              <input type="text" class="route-answer-input" placeholder="Palabra transformada">
+              <button type="button" class="btn btn-primary route-check-btn">Comprobar</button>
+            </div>
+            <div class="route-feedback" aria-live="polite"></div>
+          </div>
+        `).join('')}
+      </div>
+    </div>
     <div class="weekly-review">
       <h4>Plan de repaso de 7 dias</h4>
       <ul>
@@ -159,6 +184,42 @@ function renderStudyPlan(container, plan) {
     </div>
   `;
   container.appendChild(section);
+  initRoutePractice(section, plan.routePractice);
+}
+
+function initRoutePractice(section, exercises) {
+  section.querySelectorAll('.route-practice-card').forEach(card => {
+    let selectedCategory = '';
+    const index = parseInt(card.getAttribute('data-route-index'), 10);
+    const exercise = exercises[index];
+    const chips = card.querySelectorAll('.category-chip');
+    const input = card.querySelector('.route-answer-input');
+    const feedback = card.querySelector('.route-feedback');
+
+    chips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        selectedCategory = chip.getAttribute('data-category');
+        chips.forEach(item => item.classList.remove('selected'));
+        chip.classList.add('selected');
+      });
+    });
+
+    card.querySelector('.route-check-btn').addEventListener('click', () => {
+      const userAnswer = input.value.trim().toLowerCase();
+      const categoryOk = selectedCategory === exercise.category;
+      const answerOk = userAnswer === exercise.answer.toLowerCase();
+      const statusClass = categoryOk && answerOk ? 'correct' : 'incorrect';
+
+      feedback.className = `route-feedback show ${statusClass}`;
+      feedback.innerHTML = `
+        <strong>${categoryOk && answerOk ? 'Correcto' : 'Revisa el razonamiento'}</strong>
+        <p><b>Categoria:</b> ${exercise.category}${selectedCategory ? ` (marcaste: ${selectedCategory})` : ' (no marcaste categoria)'}</p>
+        <p><b>Respuesta:</b> ${exercise.answer}${userAnswer ? ` (escribiste: ${input.value.trim()})` : ''}</p>
+        <p><b>Parafrasis:</b> ${exercise.paraphrase}</p>
+        <p><b>Por que:</b> ${exercise.explanation}</p>
+      `;
+    });
+  });
 }
 
 // --- THEORY VIEW ---

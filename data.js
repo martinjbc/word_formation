@@ -50,6 +50,72 @@ const WORD_FORMATION_DATA = {
         answer: "surprisingly"
       }
     ],
+    routePractice: [
+      {
+        sentence: "The manager questioned the ____ of the report before sending it.",
+        base: "ACCURATE",
+        category: "noun",
+        answer: "accuracy",
+        paraphrase: "El manager queria saber si el reporte era exacto.",
+        explanation: "Despues de 'the' y antes de 'of' falta un sustantivo. 'Accurate' cambia a 'accuracy'."
+      },
+      {
+        sentence: "You should ____ your password if you think someone knows it.",
+        base: "STRONG",
+        category: "verb",
+        answer: "strengthen",
+        paraphrase: "Debes hacer tu password mas fuerte.",
+        explanation: "Despues de 'should' falta un verbo base. 'Strong' forma el verbo irregular 'strengthen'."
+      },
+      {
+        sentence: "The hotel room was small, dark and very ____.",
+        base: "COMFORT",
+        category: "adjective",
+        answer: "uncomfortable",
+        paraphrase: "La habitacion no era comoda.",
+        explanation: "Despues de 'very' falta un adjetivo. El contexto negativo pide 'uncomfortable'."
+      },
+      {
+        sentence: "The children waited ____ while the teacher prepared the activity.",
+        base: "PATIENT",
+        category: "adverb",
+        answer: "patiently",
+        paraphrase: "Los ninos esperaron con paciencia.",
+        explanation: "La palabra modifica al verbo 'waited', por eso falta un adverbio: 'patiently'."
+      },
+      {
+        sentence: "It was completely ____ to enter the building without permission.",
+        base: "LEGAL",
+        category: "adjective",
+        answer: "illegal",
+        paraphrase: "Entrar sin permiso estaba prohibido por ley.",
+        explanation: "Despues de 'was completely' falta un adjetivo. Como es prohibido, se usa el negativo 'illegal'."
+      },
+      {
+        sentence: "The sudden ____ of the lights frightened everyone in the room.",
+        base: "APPEAR",
+        category: "noun",
+        answer: "disappearance",
+        paraphrase: "Las luces desaparecieron/se apagaron de repente.",
+        explanation: "Despues de 'the sudden' falta un sustantivo. El contexto pide ausencia, entonces 'disappearance'."
+      },
+      {
+        sentence: "The new app will ____ users to track their progress every day.",
+        base: "ABLE",
+        category: "verb",
+        answer: "enable",
+        paraphrase: "La app hara posible que los usuarios sigan su progreso.",
+        explanation: "Despues de 'will' falta un verbo base. 'Able' se transforma en el verbo 'enable'."
+      },
+      {
+        sentence: "Although the plan looked simple, it was ____ difficult to complete.",
+        base: "SURPRISE",
+        category: "adverb",
+        answer: "surprisingly",
+        paraphrase: "Aunque parecia simple, fue sorprendentemente dificil.",
+        explanation: "La palabra modifica al adjetivo 'difficult', por eso falta un adverbio: 'surprisingly'."
+      }
+    ],
     steps: [
       {
         label: "1. Detecta el hueco",
