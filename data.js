@@ -116,6 +116,135 @@ const WORD_FORMATION_DATA = {
         explanation: "La palabra modifica al adjetivo 'difficult', por eso falta un adverbio: 'surprisingly'."
       }
     ],
+    highFrequencyFamilies: [
+      {
+        base: "happy",
+        noun: "happiness / unhappiness",
+        verb: "-",
+        adjective: "happy / unhappy",
+        adverb: "happily / unhappily",
+        note: "Cambia y -> i: happiness, happily."
+      },
+      {
+        base: "strong",
+        noun: "strength",
+        verb: "strengthen",
+        adjective: "strong",
+        adverb: "strongly",
+        note: "Familia irregular muy frecuente."
+      },
+      {
+        base: "able",
+        noun: "ability / disability",
+        verb: "enable",
+        adjective: "able / unable / disabled",
+        adverb: "ably",
+        note: "Enable = hacer posible."
+      },
+      {
+        base: "decide",
+        noun: "decision / indecision",
+        verb: "decide",
+        adjective: "decisive / indecisive",
+        adverb: "decisively / indecisively",
+        note: "Decision no es 'decidement'."
+      },
+      {
+        base: "believe",
+        noun: "belief / disbelief",
+        verb: "believe / disbelieve",
+        adjective: "believable / unbelievable",
+        adverb: "believably / unbelievably",
+        note: "Belief lleva f; believe lleva v."
+      },
+      {
+        base: "satisfy",
+        noun: "satisfaction / dissatisfaction",
+        verb: "satisfy",
+        adjective: "satisfied / satisfactory / unsatisfactory",
+        adverb: "satisfactorily / unsatisfactorily",
+        note: "Unsatisfactory para cosas/resultados; dissatisfied para personas."
+      },
+      {
+        base: "responsible",
+        noun: "responsibility / irresponsibility",
+        verb: "-",
+        adjective: "responsible / irresponsible",
+        adverb: "responsibly / irresponsibly",
+        note: "Empieza con r: negative prefix ir-."
+      },
+      {
+        base: "possible",
+        noun: "possibility / impossibility",
+        verb: "-",
+        adjective: "possible / impossible",
+        adverb: "possibly / impossibly",
+        note: "possible -> possibly; impossible -> impossibly."
+      },
+      {
+        base: "create",
+        noun: "creation / creator / creativity",
+        verb: "create",
+        adjective: "creative",
+        adverb: "creatively",
+        note: "Creator persona; creativity cualidad."
+      },
+      {
+        base: "compete",
+        noun: "competition / competitor",
+        verb: "compete",
+        adjective: "competitive",
+        adverb: "competitively",
+        note: "Competitor persona; competition evento/concepto."
+      }
+    ],
+    paraphraseSets: [
+      {
+        idea: "La persona actuo sin responsabilidad.",
+        examples: [
+          "It was irresponsible of him to leave the door unlocked.",
+          "He acted irresponsibly when he left the door unlocked.",
+          "Leaving the door unlocked showed a lack of responsibility.",
+          "His irresponsibility caused a security problem."
+        ]
+      },
+      {
+        idea: "El reporte no era exacto.",
+        examples: [
+          "The report was inaccurate.",
+          "The report lacked accuracy.",
+          "The figures in the report were not accurate.",
+          "The inaccuracy of the report caused confusion."
+        ]
+      },
+      {
+        idea: "La ayuda fue muy valiosa.",
+        examples: [
+          "His help was valuable.",
+          "He helped us in a valuable way.",
+          "We valued his assistance.",
+          "His assistance was invaluable to the project."
+        ]
+      },
+      {
+        idea: "El resultado no fue satisfactorio.",
+        examples: [
+          "The result was unsatisfactory.",
+          "The result did not satisfy the team.",
+          "The team was dissatisfied with the result.",
+          "There was dissatisfaction with the final result."
+        ]
+      },
+      {
+        idea: "La tarea fue sorprendentemente facil.",
+        examples: [
+          "The task was surprisingly easy.",
+          "The ease of the task surprised everyone.",
+          "Everyone was surprised by how easy the task was.",
+          "It was a surprise that the task was so easy."
+        ]
+      }
+    ],
     steps: [
       {
         label: "1. Detecta el hueco",

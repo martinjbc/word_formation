@@ -151,6 +151,54 @@ function renderStudyPlan(container, plan) {
         `).join('')}
       </div>
     </div>
+    <div class="family-reference">
+      <div class="family-reference-header">
+        <h4>Palabras frecuentes en sus diferentes formas</h4>
+        <p>Usa esta tabla como ayuda memoria rapida antes de practicar. Mira especialmente los cambios de escritura y negativos.</p>
+      </div>
+      <div class="family-reference-table-wrapper">
+        <table class="family-reference-table">
+          <thead>
+            <tr>
+              <th>Base</th>
+              <th>Noun</th>
+              <th>Verb</th>
+              <th>Adjective</th>
+              <th>Adverb</th>
+              <th>Nota</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${plan.highFrequencyFamilies.map(item => `
+              <tr>
+                <td><strong>${item.base}</strong></td>
+                <td>${item.noun}</td>
+                <td>${item.verb}</td>
+                <td>${item.adjective}</td>
+                <td>${item.adverb}</td>
+                <td>${item.note}</td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="paraphrase-reference">
+      <div class="paraphrase-reference-header">
+        <h4>La misma idea escrita de varias formas</h4>
+        <p>Estos ejemplos entrenan la habilidad de parafrasear: misma idea, distinta categoria gramatical.</p>
+      </div>
+      <div class="paraphrase-set-grid">
+        ${plan.paraphraseSets.map(set => `
+          <div class="paraphrase-set-card">
+            <strong>${set.idea}</strong>
+            <ul>
+              ${set.examples.map(example => `<li>${example}</li>`).join('')}
+            </ul>
+          </div>
+        `).join('')}
+      </div>
+    </div>
     <div class="route-practice">
       <div class="route-practice-header">
         <h4>Ejercicios para resolver con la ruta</h4>
