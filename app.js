@@ -11,6 +11,16 @@ let appState = {
     score: 0,
     answers: [], // tracks status of each question: 'correct' or 'incorrect'
     isSubmitted: false
+  },
+  exam: {
+    questions: [],
+    currentIndex: 0,
+    isSubmitted: false
+  },
+  flashcards: {
+    cards: [],
+    currentIndex: 0,
+    revealed: false
   }
 };
 
@@ -20,6 +30,9 @@ document.addEventListener('DOMContentLoaded', () => {
   initRoadmap();
   initTheory();
   initWordMatrix();
+  initWordFamilies();
+  initExamMode();
+  initFlashcards();
   initPractice();
 });
 
@@ -59,6 +72,12 @@ function switchTab(tabId) {
   // Special hooks on tab changes
   if (tabId === 'practice' && appState.practice.questions.length === 0) {
     startNewPracticeSession();
+  }
+  if (tabId === 'exam' && appState.exam.questions.length === 0) {
+    startNewExamSession();
+  }
+  if (tabId === 'flashcards' && appState.flashcards.cards.length === 0) {
+    startFlashcardSession();
   }
 }
 
@@ -406,6 +425,313 @@ function formatWordTags(wordString, className) {
     .map(w => w.trim())
     .map(w => `<span class="word-badge ${className === 'negatives' ? 'error' : className}">${w}</span>`)
     .join(' ');
+}
+
+// --- WORD FAMILIES DATABASE ---
+function initWordFamilies() {
+  if (!window.WORD_FAMILY_DATABASE && typeof WORD_FAMILY_DATABASE === 'undefined') return;
+
+  populateFamilyLevelFilter();
+  renderFamilyDashboard();
+  renderQuickRules();
+  renderFamilyCards();
+
+  ['family-search', 'family-level-filter', 'family-priority-filter', 'family-category-filter'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener('input', renderFamilyCards);
+    if (el) el.addEventListener('change', renderFamilyCards);
+  });
+}
+
+function getFamilyData() {
+  return typeof WORD_FAMILY_DATABASE !== 'undefined' ? WORD_FAMILY_DATABASE : { families: [], quickRules: [], essentials: [] };
+}
+
+function populateFamilyLevelFilter() {
+  const select = document.getElementById('family-level-filter');
+  if (!select) return;
+
+  const levels = [...new Set(getFamilyData().families.map(family => family.level))].sort();
+  levels.forEach(level => {
+    const option = document.createElement('option');
+    option.value = level;
+    option.textContent = level;
+    select.appendChild(option);
+  });
+}
+
+function renderFamilyDashboard() {
+  const container = document.getElementById('family-dashboard');
+  if (!container) return;
+
+  const data = getFamilyData();
+  container.innerHTML = `
+    <section class="essentials-panel">
+      <div class="section-heading">
+        <span class="level-badge">Indispensables Britanico</span>
+        <h3>Lo que mas aparece en Form Words</h3>
+      </div>
+      <div class="essentials-grid">
+        ${data.essentials.map(item => `
+          <article class="essential-card">
+            <strong>${item.title}</strong>
+            <p>${item.detail}</p>
+          </article>
+        `).join('')}
+      </div>
+    </section>
+  `;
+}
+
+function renderQuickRules() {
+  const container = document.getElementById('quick-rules-panel');
+  if (!container) return;
+
+  container.innerHTML = `
+    <div class="section-heading">
+      <span class="level-badge">Reglas rapidas</span>
+      <h3>Detecta la categoria antes de transformar</h3>
+    </div>
+    <div class="rules-grid">
+      ${getFamilyData().quickRules.map(rule => `<div class="rule-card">${rule}</div>`).join('')}
+    </div>
+  `;
+}
+
+function renderFamilyCards() {
+  const container = document.getElementById('family-grid');
+  if (!container) return;
+
+  const search = (document.getElementById('family-search')?.value || '').trim().toLowerCase();
+  const level = document.getElementById('family-level-filter')?.value || 'all';
+  const priority = document.getElementById('family-priority-filter')?.value || 'all';
+  const category = document.getElementById('family-category-filter')?.value || 'all';
+
+  const filteredFamilies = getFamilyData().families.filter(family => {
+    const matchesSearch = !search || familyToSearchText(family).includes(search);
+    const matchesLevel = level === 'all' || family.level === level;
+    const matchesPriority = priority === 'all' || family.priority >= parseInt(priority, 10);
+    const matchesCategory = category === 'all' || (family.forms[category] && family.forms[category].length > 0);
+    return matchesSearch && matchesLevel && matchesPriority && matchesCategory;
+  });
+
+  if (filteredFamilies.length === 0) {
+    container.innerHTML = `<div class="empty-state family-empty">No se encontraron familias con esos filtros.</div>`;
+    return;
+  }
+
+  container.innerHTML = filteredFamilies
+    .sort((a, b) => b.priority - a.priority || a.base.localeCompare(b.base))
+    .map(renderFamilyCard)
+    .join('');
+}
+
+function familyToSearchText(family) {
+  const formsText = Object.values(family.forms)
+    .flat()
+    .map(item => `${item.word} ${item.translation}`)
+    .join(' ');
+  return `${family.base} ${family.level} ${formsText} ${family.commonMistakes.join(' ')}`.toLowerCase();
+}
+
+function renderFamilyCard(family) {
+  return `
+    <article class="family-card">
+      <div class="family-card-header">
+        <div>
+          <span class="level-badge">${family.level}</span>
+          <h3>${family.base}</h3>
+        </div>
+        <div class="priority-stars" title="Prioridad ${family.priority} de 5">${renderStars(family.priority)}</div>
+      </div>
+      <div class="family-forms">
+        ${['verb', 'noun', 'adjective', 'adverb'].map(category => renderFormGroup(category, family.forms[category] || [])).join('')}
+      </div>
+      <div class="family-notes">
+        <h4>Errores comunes</h4>
+        <ul>${family.commonMistakes.map(item => `<li>${item}</li>`).join('')}</ul>
+      </div>
+      <div class="family-examples">
+        <h4>Ejemplo tipo examen</h4>
+        ${family.examExamples.map(example => `
+          <div class="exam-example">
+            <p>${example.sentence}</p>
+            <span>Respuesta: <strong>${example.answer}</strong></span>
+            <small>${example.explanation}</small>
+          </div>
+        `).join('')}
+      </div>
+    </article>
+  `;
+}
+
+function renderFormGroup(category, forms) {
+  const label = category.charAt(0).toUpperCase() + category.slice(1);
+  const content = forms.length
+    ? forms.map(form => `
+      <span class="family-word ${category}">
+        <strong>${form.word}</strong>
+        <em>${form.translation}</em>
+        ${form.frequency ? `<small>${renderStars(form.frequency)}</small>` : ''}
+      </span>
+    `).join('')
+    : `<span class="family-word empty">-</span>`;
+
+  return `
+    <div class="form-group ${category}">
+      <h4>${label}</h4>
+      <div class="form-list">${content}</div>
+    </div>
+  `;
+}
+
+function renderStars(value) {
+  return `${'★'.repeat(value)}${'☆'.repeat(5 - value)}`;
+}
+
+// --- EXAM MODE ---
+function initExamMode() {
+  const container = document.getElementById('exam-content-area');
+  if (container) {
+    container.innerHTML = `<div class="empty-state">Abre este modo para generar preguntas con las familias disponibles.</div>`;
+  }
+}
+
+function startNewExamSession() {
+  appState.exam.questions = shuffleArray(getFamilyData().families.flatMap(family =>
+    family.examExamples.map(example => ({
+      base: family.base,
+      level: family.level,
+      priority: family.priority,
+      ...example
+    }))
+  ));
+  appState.exam.currentIndex = 0;
+  appState.exam.isSubmitted = false;
+  renderExamQuestion();
+}
+
+function renderExamQuestion() {
+  const container = document.getElementById('exam-content-area');
+  if (!container) return;
+
+  const total = appState.exam.questions.length;
+  const index = appState.exam.currentIndex % total;
+  const question = appState.exam.questions[index];
+  appState.exam.isSubmitted = false;
+
+  container.innerHTML = `
+    <div class="question-card exam-card">
+      <div class="question-meta">
+        <span class="question-level">${question.level} &bull; Pregunta ${index + 1} de ${total}</span>
+        <span class="priority-stars">${renderStars(question.priority)}</span>
+      </div>
+      <div class="sentence-display">${question.sentence.replace('____', '<span class="gap">____</span>')}</div>
+      <div style="text-align: center;">
+        <span class="word-hint">Base Word: ${question.base.toUpperCase()}</span>
+      </div>
+      <form class="answer-form" id="exam-form" autocomplete="off">
+        <input type="text" id="exam-answer-input" class="answer-input" placeholder="Escribe la respuesta..." required>
+        <button type="submit" class="btn btn-primary">Verificar</button>
+      </form>
+      <div class="feedback-box" id="exam-feedback"></div>
+      <div class="mode-actions">
+        <button class="btn" id="restart-exam-btn">Reiniciar</button>
+        <button class="btn btn-success" id="next-exam-btn" style="display: none;">Siguiente pregunta</button>
+      </div>
+    </div>
+  `;
+
+  document.getElementById('exam-answer-input').focus();
+  document.getElementById('exam-form').addEventListener('submit', (event) => {
+    event.preventDefault();
+    checkExamAnswer(question);
+  });
+  document.getElementById('next-exam-btn').addEventListener('click', () => {
+    appState.exam.currentIndex++;
+    renderExamQuestion();
+  });
+  document.getElementById('restart-exam-btn').addEventListener('click', startNewExamSession);
+}
+
+function checkExamAnswer(question) {
+  if (appState.exam.isSubmitted) return;
+  appState.exam.isSubmitted = true;
+
+  const input = document.getElementById('exam-answer-input');
+  const feedback = document.getElementById('exam-feedback');
+  const isCorrect = input.value.trim().toLowerCase() === question.answer.toLowerCase();
+
+  input.disabled = true;
+  input.classList.add(isCorrect ? 'correct' : 'incorrect');
+  feedback.className = `feedback-box ${isCorrect ? 'correct-box' : 'incorrect-box'} show`;
+  feedback.innerHTML = `
+    <div class="feedback-title">${isCorrect ? 'Correcto' : 'Incorrecto'}</div>
+    <div class="feedback-text">
+      ${isCorrect ? '' : `Respuesta correcta: <span class="correct-answer-text">${question.answer}</span><br>`}
+      ${question.explanation}
+    </div>
+  `;
+  document.getElementById('next-exam-btn').style.display = 'inline-flex';
+}
+
+// --- FLASHCARDS ---
+function initFlashcards() {
+  const container = document.getElementById('flashcard-content-area');
+  if (container) {
+    container.innerHTML = `<div class="empty-state">Abre este modo para mezclar tus tarjetas de familias.</div>`;
+  }
+}
+
+function startFlashcardSession() {
+  appState.flashcards.cards = shuffleArray(getFamilyData().families);
+  appState.flashcards.currentIndex = 0;
+  appState.flashcards.revealed = false;
+  renderFlashcard();
+}
+
+function renderFlashcard() {
+  const container = document.getElementById('flashcard-content-area');
+  if (!container) return;
+
+  const total = appState.flashcards.cards.length;
+  const index = appState.flashcards.currentIndex % total;
+  const family = appState.flashcards.cards[index];
+
+  container.innerHTML = `
+    <div class="flashcard">
+      <div class="question-meta">
+        <span class="question-level">${family.level} &bull; Tarjeta ${index + 1} de ${total}</span>
+        <span class="priority-stars">${renderStars(family.priority)}</span>
+      </div>
+      <div class="flashcard-base">${family.base}</div>
+      <div id="flashcard-family" class="${appState.flashcards.revealed ? '' : 'hidden'}">
+        <div class="family-forms flashcard-forms">
+          ${['verb', 'noun', 'adjective', 'adverb'].map(category => renderFormGroup(category, family.forms[category] || [])).join('')}
+        </div>
+        <div class="family-notes">
+          <h4>Trampa</h4>
+          <ul>${family.commonMistakes.map(item => `<li>${item}</li>`).join('')}</ul>
+        </div>
+      </div>
+      <div class="mode-actions">
+        <button class="btn btn-primary" id="reveal-flashcard-btn">${appState.flashcards.revealed ? 'Ocultar familia' : 'Mostrar familia'}</button>
+        <button class="btn" id="next-flashcard-btn">Siguiente</button>
+        <button class="btn" id="shuffle-flashcards-btn">Mezclar</button>
+      </div>
+    </div>
+  `;
+
+  document.getElementById('reveal-flashcard-btn').addEventListener('click', () => {
+    appState.flashcards.revealed = !appState.flashcards.revealed;
+    renderFlashcard();
+  });
+  document.getElementById('next-flashcard-btn').addEventListener('click', () => {
+    appState.flashcards.currentIndex++;
+    appState.flashcards.revealed = false;
+    renderFlashcard();
+  });
+  document.getElementById('shuffle-flashcards-btn').addEventListener('click', startFlashcardSession);
 }
 
 // --- PRACTICE ZONE VIEW ---
