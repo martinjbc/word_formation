@@ -30,6 +30,22 @@
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
           Buscador
         </button>
+        <button class="tab-btn" data-target="families">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h7v7H3z"></path><path d="M14 3h7v7h-7z"></path><path d="M14 14h7v7h-7z"></path><path d="M3 14h7v7H3z"></path></svg>
+          Familias
+        </button>
+        <button class="tab-btn" data-target="repaso-i10">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+          Repaso I-10
+        </button>
+        <button class="tab-btn" data-target="exam">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"></path><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
+          Examen
+        </button>
+        <button class="tab-btn" data-target="flashcards">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"></rect><path d="M7 8h10"></path><path d="M7 12h6"></path></svg>
+          Flashcards
+        </button>
         <button class="tab-btn" data-target="practice">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
           Práctica
@@ -99,6 +115,77 @@
       </section>
 
       <!-- SECTION 4: PRACTICE (Zona de Práctica / Simulador) -->
+      <section id="families" class="view-section">
+        <div class="hero">
+          <h2>Base de Familias</h2>
+          <p>Familias frecuentes para Form Words desde Intermedio 9: formas, traducciones, errores comunes y ejemplos tipo examen.</p>
+        </div>
+        <div class="family-dashboard" id="family-dashboard"></div>
+        <div class="family-controls">
+          <div class="search-wrapper">
+            <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <input type="text" id="family-search" class="search-input" placeholder="Buscar por base, forma o traduccion...">
+          </div>
+          <select id="family-level-filter" class="select-dropdown">
+            <option value="all">Todos los niveles</option>
+          </select>
+          <select id="family-priority-filter" class="select-dropdown">
+            <option value="all">Todas las prioridades</option>
+            <option value="5">Prioridad 5</option>
+            <option value="4">Prioridad 4+</option>
+            <option value="3">Prioridad 3+</option>
+          </select>
+          <select id="family-category-filter" class="select-dropdown">
+            <option value="all">Todas las categorias</option>
+            <option value="verb">Verb</option>
+            <option value="noun">Noun</option>
+            <option value="adjective">Adjective</option>
+            <option value="adverb">Adverb</option>
+          </select>
+        </div>
+        <div class="rules-panel" id="quick-rules-panel"></div>
+        <div class="family-grid" id="family-grid"></div>
+      </section>
+
+      <!-- SECTION 8: REPASO INTERMEDIO 10 -->
+      <section id="repaso-i10" class="view-section">
+        <div class="hero">
+          <h2>Repaso Intermedio 10</h2>
+          <p>Detalle interactivo de las 13 familias de palabras esenciales para tu examen. Elige una palabra a la izquierda para ver su desglose de formas, traducciones y ejemplos inglés-español.</p>
+        </div>
+        <div class="repaso-layout">
+          <aside class="repaso-sidebar">
+            <h3 class="repaso-menu-title">Palabras Base</h3>
+            <ul class="repaso-nav-list" id="repaso-words-list">
+              <!-- Dynamically populated from app.js -->
+            </ul>
+          </aside>
+          <article class="repaso-content" id="repaso-detail-panel">
+            <!-- Dynamically populated from app.js -->
+          </article>
+        </div>
+      </section>
+
+      <section id="exam" class="view-section">
+        <div class="practice-container">
+          <div class="hero compact-hero">
+            <h2>Modo Examen</h2>
+            <p>Practica con oraciones tipo Britanico: identifica la categoria, transforma la palabra base y revisa la explicacion.</p>
+          </div>
+          <div id="exam-content-area"></div>
+        </div>
+      </section>
+
+      <section id="flashcards" class="view-section">
+        <div class="practice-container">
+          <div class="hero compact-hero">
+            <h2>Flashcards</h2>
+            <p>Repasa primero la palabra base y luego revela toda la familia.</p>
+          </div>
+          <div id="flashcard-content-area"></div>
+        </div>
+      </section>
+
       <section id="practice" class="view-section">
         <div class="practice-container">
           <div class="practice-header">
@@ -143,6 +230,7 @@
 
   <!-- Scripts -->
   <script src="data.js"></script>
+  <script src="data/wordFamilies.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

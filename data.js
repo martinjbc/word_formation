@@ -1124,3 +1124,503 @@ const WORD_FORMATION_DATA = {
     }
   ]
 };
+
+const REPASO_I10_DATA = [
+  {
+    id: 1,
+    root: "PREFER",
+    translation: "preferir",
+    forms: [
+      {
+        type: "Verb",
+        word: "prefer",
+        translation: "preferir",
+        en: "I prefer tea to coffee.",
+        es: "Yo prefiero té en lugar de café."
+      },
+      {
+        type: "Noun",
+        word: "preference",
+        translation: "preferencia",
+        en: "My preference is tea.",
+        es: "Mi preferencia es el té."
+      },
+      {
+        type: "Adjective",
+        word: "preferable",
+        translation: "preferible",
+        en: "Walking is preferable to driving.",
+        es: "Caminar es preferible a conducir."
+      },
+      {
+        type: "Adjective",
+        word: "preferred",
+        translation: "preferido",
+        en: "Blue is my preferred color.",
+        es: "El azul es mi color preferido."
+      },
+      {
+        type: "Adverb",
+        word: "preferably",
+        translation: "preferiblemente",
+        en: "Come early, preferably before 8.",
+        es: "Ven temprano, preferiblemente antes de las 8."
+      }
+    ]
+  },
+  {
+    id: 2,
+    root: "CRITICIZE",
+    translation: "criticar",
+    forms: [
+      {
+        type: "Verb",
+        word: "criticize",
+        translation: "criticar",
+        en: "Don't criticize your friends.",
+        es: "No critiques a tus amigos."
+      },
+      {
+        type: "Noun",
+        word: "criticism",
+        translation: "crítica",
+        en: "His criticism was fair.",
+        es: "Su crítica fue justa."
+      },
+      {
+        type: "Noun",
+        word: "critic",
+        translation: "crítico (persona)",
+        en: "She is a movie critic.",
+        es: "Ella es una crítica de cine."
+      },
+      {
+        type: "Adjective",
+        word: "critical",
+        translation: "crítico / crucial",
+        en: "This is a critical decision.",
+        es: "Esta es una decisión crítica."
+      },
+      {
+        type: "Adverb",
+        word: "critically",
+        translation: "críticamente",
+        en: "She looked critically at the report.",
+        es: "Ella miró el informe críticamente."
+      }
+    ]
+  },
+  {
+    id: 3,
+    root: "SYMPATHIZE",
+    translation: "compadecerse",
+    forms: [
+      {
+        type: "Verb",
+        word: "sympathize",
+        translation: "compadecerse",
+        en: "I sympathize with you.",
+        es: "Me compadezco de ti."
+      },
+      {
+        type: "Noun",
+        word: "sympathy",
+        translation: "compasión",
+        en: "She showed great sympathy.",
+        es: "Ella mostró mucha compasión."
+      },
+      {
+        type: "Adjective",
+        word: "sympathetic",
+        translation: "comprensivo",
+        en: "Our teacher is very sympathetic.",
+        es: "Nuestro profesor es muy comprensivo."
+      },
+      {
+        type: "Adverb",
+        word: "sympathetically",
+        translation: "con comprensión",
+        en: "She smiled sympathetically.",
+        es: "Ella sonrió comprensivamente."
+      }
+    ]
+  },
+  {
+    id: 4,
+    root: "ENTHUSE",
+    translation: "mostrar entusiasmo",
+    forms: [
+      {
+        type: "Verb",
+        word: "enthuse",
+        translation: "mostrar entusiasmo",
+        en: "They enthuse about football.",
+        es: "Ellos se entusiasman con el fútbol."
+      },
+      {
+        type: "Noun",
+        word: "enthusiasm",
+        translation: "entusiasmo",
+        en: "She has a lot of enthusiasm.",
+        es: "She has a lot of enthusiasm." // Corrected EN
+      },
+      {
+        type: "Adjective",
+        word: "enthusiastic",
+        translation: "entusiasmado",
+        en: "He is enthusiastic about English.",
+        es: "Él está entusiasmado con el inglés."
+      },
+      {
+        type: "Adverb",
+        word: "enthusiastically",
+        translation: "con entusiasmo",
+        en: "They cheered enthusiastically.",
+        es: "Ellos aplaudieron con entusiasmo."
+      }
+    ]
+  },
+  {
+    id: 5,
+    root: "CREATE",
+    translation: "crear",
+    forms: [
+      {
+        type: "Verb",
+        word: "create",
+        translation: "crear",
+        en: "They create new ideas.",
+        es: "Ellos crean nuevas ideas."
+      },
+      {
+        type: "Noun",
+        word: "creation",
+        translation: "creación",
+        en: "This painting is my creation.",
+        es: "Esta pintura es mi creación."
+      },
+      {
+        type: "Noun",
+        word: "creator",
+        translation: "creador",
+        en: "She is the creator of the game.",
+        es: "Ella es la creadora del juego."
+      },
+      {
+        type: "Noun",
+        word: "creativity",
+        translation: "creatividad",
+        en: "Creativity is important.",
+        es: "La creatividad es importante."
+      },
+      {
+        type: "Adjective",
+        word: "creative",
+        translation: "creativo",
+        en: "He is very creative.",
+        es: "Él es muy creativo."
+      },
+      {
+        type: "Adverb",
+        word: "creatively",
+        translation: "creativamente",
+        en: "She solved it creatively.",
+        es: "Ella lo resolvió creativamente."
+      }
+    ]
+  },
+  {
+    id: 6,
+    root: "DECIDE",
+    translation: "decidir",
+    forms: [
+      {
+        type: "Verb",
+        word: "decide",
+        translation: "decidir",
+        en: "We decide together.",
+        es: "Nosotros decidimos juntos."
+      },
+      {
+        type: "Noun",
+        word: "decision",
+        translation: "decisión",
+        en: "It was a good decision.",
+        es: "Fue una buena decisión."
+      },
+      {
+        type: "Adjective",
+        word: "decisive",
+        translation: "decisivo",
+        en: "She made a decisive move.",
+        es: "Ella hizo un movimiento decisivo."
+      },
+      {
+        type: "Adverb",
+        word: "decisively",
+        translation: "decisivamente",
+        en: "He answered decisively.",
+        es: "Él respondió decisivamente."
+      }
+    ]
+  },
+  {
+    id: 7,
+    root: "COMMUNICATE",
+    translation: "comunicar",
+    forms: [
+      {
+        type: "Verb",
+        word: "communicate",
+        translation: "comunicar",
+        en: "We communicate every day.",
+        es: "Nosotros nos comunicamos todos los días."
+      },
+      {
+        type: "Noun",
+        word: "communication",
+        translation: "comunicación",
+        en: "Good communication is important.",
+        es: "La buena comunicación es importante."
+      },
+      {
+        type: "Adjective",
+        word: "communicative",
+        translation: "comunicativo",
+        en: "She is very communicative.",
+        es: "Ella es muy comunicativa."
+      },
+      {
+        type: "Adverb",
+        word: "communicatively",
+        translation: "de manera comunicativa",
+        en: "He spoke communicatively.",
+        es: "Él habló de manera comunicativa."
+      }
+    ]
+  },
+  {
+    id: 8,
+    root: "SUCCEED",
+    translation: "tener éxito",
+    forms: [
+      {
+        type: "Verb",
+        word: "succeed",
+        translation: "tener éxito",
+        en: "You will succeed.",
+        es: "Tú tendrás éxito."
+      },
+      {
+        type: "Noun",
+        word: "success",
+        translation: "éxito",
+        en: "Her success surprised everyone.",
+        es: "Su éxito sorprendió a todos."
+      },
+      {
+        type: "Adjective",
+        word: "successful",
+        translation: "exitoso",
+        en: "She is successful.",
+        es: "Ella es exitosa."
+      },
+      {
+        type: "Adverb",
+        word: "successfully",
+        translation: "exitosamente",
+        en: "They finished successfully.",
+        es: "Ellos terminaron exitosamente."
+      }
+    ]
+  },
+  {
+    id: 9,
+    root: "EDUCATE",
+    translation: "educar",
+    forms: [
+      {
+        type: "Verb",
+        word: "educate",
+        translation: "educar",
+        en: "Parents educate their children.",
+        es: "Los padres educan a sus hijos."
+      },
+      {
+        type: "Noun",
+        word: "education",
+        translation: "educación",
+        en: "Education is valuable.",
+        es: "La educación es valiosa."
+      },
+      {
+        type: "Adjective",
+        word: "educated",
+        translation: "educado / con estudios",
+        en: "She is well educated.",
+        es: "Ella tiene buena educación."
+      },
+      {
+        type: "Adjective",
+        word: "educational",
+        translation: "educativo",
+        en: "This book is educational.",
+        es: "Este libro es educativo."
+      },
+      {
+        type: "Adverb",
+        word: "educationally",
+        translation: "educativamente",
+        en: "The program helps students educationally.",
+        es: "El programa ayuda a los estudiantes educativamente."
+      }
+    ]
+  },
+  {
+    id: 10,
+    root: "EMPLOY",
+    translation: "emplear",
+    forms: [
+      {
+        type: "Verb",
+        word: "employ",
+        translation: "emplear",
+        en: "The company employs 50 people.",
+        es: "La empresa emplea a 50 personas."
+      },
+      {
+        type: "Noun",
+        word: "employment",
+        translation: "empleo",
+        en: "He is looking for employment.",
+        es: "Él busca empleo."
+      },
+      {
+        type: "Noun",
+        word: "employer",
+        translation: "empleador",
+        en: "My employer is very kind.",
+        es: "Mi empleador es muy amable."
+      },
+      {
+        type: "Noun",
+        word: "employee",
+        translation: "empleado",
+        en: "Every employee has an ID.",
+        es: "Todo empleado tiene un carnet."
+      },
+      {
+        type: "Adjective",
+        word: "employed",
+        translation: "empleado",
+        en: "She is employed by a bank.",
+        es: "Ella está empleada en un banco."
+      },
+      {
+        type: "Adjective",
+        word: "unemployed",
+        translation: "desempleado",
+        en: "He is unemployed now.",
+        es: "Él está desempleado ahora."
+      }
+    ]
+  },
+  {
+    id: 11,
+    root: "DEVELOP",
+    translation: "desarrollar",
+    forms: [
+      {
+        type: "Verb",
+        word: "develop",
+        translation: "desarrollar",
+        en: "Children develop quickly.",
+        es: "Los niños se desarrollan rápidamente."
+      },
+      {
+        type: "Noun",
+        word: "development",
+        translation: "desarrollo",
+        en: "The city's development is fast.",
+        es: "El desarrollo de la ciudad es rápido."
+      },
+      {
+        type: "Adjective",
+        word: "developed",
+        translation: "desarrollado",
+        en: "Japan is a developed country.",
+        es: "Japón es un país desarrollado."
+      },
+      {
+        type: "Adjective",
+        word: "developing",
+        translation: "en desarrollo",
+        en: "Peru is a developing country.",
+        es: "Perú es un país en desarrollo."
+      }
+    ]
+  },
+  {
+    id: 12,
+    root: "PERFORM",
+    translation: "realizar / actuar",
+    forms: [
+      {
+        type: "Verb",
+        word: "perform",
+        translation: "realizar / actuar",
+        en: "She performed very well.",
+        es: "Ella actuó muy bien."
+      },
+      {
+        type: "Noun",
+        word: "performance",
+        translation: "desempeño / actuación",
+        en: "His performance was excellent.",
+        es: "Su desempeño fue excelente."
+      },
+      {
+        type: "Adjective",
+        word: "performative",
+        translation: "performativo",
+        en: "It was a performative act.",
+        es: "Fue un acto performativo."
+      }
+    ]
+  },
+  {
+    id: 13,
+    root: "APPEAR",
+    translation: "aparecer / parecer",
+    forms: [
+      {
+        type: "Verb",
+        word: "appear",
+        translation: "aparecer / parecer",
+        en: "A rainbow appeared.",
+        es: "Un arcoíris apareció."
+      },
+      {
+        type: "Noun",
+        word: "appearance",
+        translation: "apariencia",
+        en: "Her appearance changed.",
+        es: "Su apariencia cambió."
+      },
+      {
+        type: "Adjective",
+        word: "apparent",
+        translation: "aparente / evidente",
+        en: "The answer is apparent.",
+        es: "La respuesta es evidente."
+      },
+      {
+        type: "Adverb",
+        word: "apparently",
+        translation: "aparentemente",
+        en: "Apparently, he is busy.",
+        es: "Aparentemente, él está ocupado."
+      }
+    ]
+  }
+];
