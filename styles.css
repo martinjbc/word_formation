@@ -1903,6 +1903,22 @@ footer a:hover {
   text-align: center;
 }
 
+.badge-verb {
+  background-color: var(--badge-verb);
+}
+
+.badge-noun {
+  background-color: var(--badge-noun);
+}
+
+.badge-adj {
+  background-color: var(--badge-adj);
+}
+
+.badge-adv {
+  background-color: var(--badge-adv);
+}
+
 .col-type {
   width: 100px;
 }
